@@ -18,7 +18,7 @@ SO THAT I can create a watchlist with everything that I want to watch in the fut
 * Title
 * Image
 * Rating
-**Language
-**Description
-**Length
-**?Streaming Network?
+** Language
+** Description
+** Length
+** ?Streaming Network?
