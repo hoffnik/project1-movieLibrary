@@ -13,3 +13,12 @@ SO THAT I can create a watchlist with everything that I want to watch in the fut
 * * http://www.omdbapi.com/
 *  TV API: TV Maze
 * * https://www.tvmaze.com/api
+
+## Properties Used
+* Title
+* Image
+* Rating
+* *Language
+* *Description
+* *Length
+* *?Streaming Network?
