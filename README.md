@@ -14,11 +14,23 @@ SO THAT I can create a watchlist with everything that I want to watch in the fut
 *  TV API: TV Maze
 * * https://www.tvmaze.com/api
 
-## Properties Used
+## Properties Used Movies
 * Title
 * Image
 * Rating
+* Length
 * * Language
 * * Description
 * * Length
 * * ?Streaming Network?
+
+## Properties Used TV Shows
+* Title
+* Image
+* Rating
+* Length
+* Seasons & Episodes
+* * Language
+* * Description
+* * Length
+* * Streaming Network/ Link to show
