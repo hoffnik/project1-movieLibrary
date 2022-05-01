@@ -44,13 +44,15 @@ searchTv.addEventListener("click", getShows)
 
 // movie API part
 // globale variables
-var movieSearchInput = document.querySelector('input[id="movie"]').value;
 var htmlMovieEl = document.getElementById('main');
 
 // call movie function
 $( "#searchMov" ).click(function(movieSearchInput) {
     // get movieAPI
-    var movieURL = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/' + movieSearchInput
+    var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
+    var movieSearchInput = document.getElementById('movie').value;
+    console.log(movieSearchInput);
+    var movieURL = movieAPI + movieSearchInput
 console.log(movieURL);
 
     // fetch the API
