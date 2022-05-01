@@ -1,0 +1,41 @@
+body {
+    background-color: #22254b;
+}
+
+h1 {
+    color:#eee
+}
+
+label {
+    color: #eee;
+}
+
+.movie-show {
+    background-color: #373b69;
+    border-radius: 3px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    width: 210px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.img {
+    max-width: 100%;
+}
+
+.info {
+    color: #eee;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+}
+
+.info h3 {
+    margin: 0;
+}
+
+.info span {
+    background-color: #22254b;
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+}
