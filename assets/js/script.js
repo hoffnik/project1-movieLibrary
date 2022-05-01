@@ -13,32 +13,36 @@
 
 var APIKey = 'k_xuhun4lc'
 
-var htmlMovieEl = document.getElementById('movieData')
+var htmlMovieEl = document.getElementById('main');
+var movieInput = document.getElementById('searchMov');
+var movieForm = document.getElementById('movieForm');
 
 // search movie function to target value given in the input field
 var searchMovieHandler = function(event) {
     event.preventDefault();
 
     // add the input name when created in HTML
-    var movieSearchInput = document.querySelector('input[name="input-tag-name"]').value;
-    // console.log(movieSearchInput); -> check if selection works
+    var movieSearchInput = document.querySelector('input[id="movieInput"]').value;
+    console.log(movieSearchInput);
 
     if (!movieSearchInput) {
+        // use modal
         alert('Please fill out the search field!');
         return false
     }
 
     // reset the input field after hitting search
-    movieSearchInput.reset();
+    movieForm.reset();
 
     // call getMovies function and pass the searched term into function
+    // get an error since data is not defined yet-> function appears later
     getMovies(movieSearchInput);
 }
 
 var getMovies = function(movieSearchInput) {
-    var requestURL = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/' + movieSearchInput + 
+    var movieURL = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/' + movieSearchInput
     
-    fetch(requestURL)
+    fetch(movieURL)
     .then(function(response) {
         if (response.status !== 200) {
             document.location.status.replace('./404.html')
@@ -50,17 +54,19 @@ var getMovies = function(movieSearchInput) {
     })
     .then(function(data){
         // display data in console, change to according HTML element later
-        console.log(data.results[i]);
+        console.log(data);
     })
     .catch(function(error) {
         // in case error occurs
         console.log(error);
     })
     
-    // 
-    var movieObject = data.results[i];
+    // // for now ok, change to object later that we can push to array-> savedMovies = [];
+    // var movieObject = data.results[i];
     
-    var createMovieEl = function (movieObject) { 
+    for (i=0; i< data.length; i++) { 
+        console.log('works');
+        console.log(data[i].title);
         // create the list div to hold information
         var movieContainerEl = document.createElement('div');
         movieContainerEl.className = 'movie-container';
@@ -78,4 +84,4 @@ var getMovies = function(movieSearchInput) {
 }
 
 // search for new movie
-movieInput.addEventListener('submit', searchMovieHandler);
+movieInput.addEventListener('click', searchMovieHandler);
