@@ -51,10 +51,8 @@ $( "#searchMov" ).click(function(movieSearchInput) {
     // get movieAPI
     var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
     var movieSearchInput = document.getElementById('movie').value;
-    console.log(movieSearchInput);
     var movieURL = movieAPI + movieSearchInput
-console.log(movieURL);
-
+    main.innerHTML = ''
     // fetch the API
     fetch(movieURL)
         .then(function(response) {
