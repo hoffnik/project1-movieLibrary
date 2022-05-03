@@ -1,14 +1,18 @@
-var searchTv = document.getElementById('searchTv')
+// var searchTv = document.getElementById('searchTv')
 var show = document.getElementById('tv')
-var searchMov = document.getElementById('searchMov')
+var tvForm = document.getElementById('tvForm')
+// var searchMov = document.getElementById('searchMov')
 var movie = document.getElementById('movie')
+var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
-function getShows() {
+function getShows(event) {
+    event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
     main.innerHTML = ""
 
+    console.log(tvUrl)
     fetch(tvUrl)
         .then(function (response){
             return response.json();
@@ -25,34 +29,39 @@ function getShows() {
             var showRating = document.createElement('span')
         
             showImg.src = data[i].show.image.medium
-            showTitle = data[i].show.name
-            showRating = data[i].show.rating.average
+            showTitle.innerHTML = data[i].show.name
+            showRating.innerHTML = data[i].show.rating.average
 
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
 
-            showInfo.append(showTitle,showRating)
-            showEl.append(showImg,showInfo)
+            showInfo.append(showTitle, showRating)
+            showEl.append(showImg, showInfo)
             main.appendChild(showEl)
         }
     })
     
 };
 
-searchTv.addEventListener("click", getShows)
+show.addEventListener("keyup", getShows)
+tvForm.addEventListener('submit', getShows)
 
 // movie API part
 // globale variables
 var movieSearchInput = document.querySelector('input[id="movie"]').value;
 var htmlMovieEl = document.getElementById('main');
 
-// call movie function
-$( "#searchMov" ).click(function(movieSearchInput) {
+//movie function
+function getMovies(event) {
+    event.preventDefault();
     // get movieAPI
-    var movieURL = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/' + movieSearchInput
-console.log(movieURL);
+    // var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
+    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&s='
+    var movieURL = movieAPI + movie.value
+    main.innerHTML = ""
 
+    console.log(movieURL)
     // fetch the API
     fetch(movieURL)
         .then(function(response) {
@@ -62,13 +71,13 @@ console.log(movieURL);
                 // convert to JSON object
                 return response.json();
                 console.log(response);
-            }
+            } 
         })
         .then(function(data){
             console.log(data)
     
-            for(var i = 0; i< data.results.length; i++) {
-                console.log(data.results[i].title);
+            for(var i = 0; i< data.Search.length; i++) {
+                console.log(data.Search[i].title);
                 // create the list div to hold information
                 var movieContainerEl = document.createElement('div');
                 movieContainerEl.className = 'movie-container';
@@ -77,11 +86,32 @@ console.log(movieURL);
         
                 // create image and parse information from movie element
                 // not sure how we would add an alt text, seems like this info is not provided
-                movieContainerEl.innerHTML = '<img src="' + data.results[i].image + '" width="500" height="600"><h3 class="movie-title">' + data.results[i].title + '</h3><span class="movie-rating">' + data.results[i].rating + '</span>';
-                
+                var movEl = document.createElement('div')
+                var movImg = document.createElement('img')
+                var movInfo = document.createElement('div')
+                var movTitle = document.createElement('h3')
+                var movRating = document.createElement('span')
+            
+                movImg.src = data.Search[i].Poster
+                movTitle.innerHTML = data.Search[i].Title
+                movRating.innerHTML = data.Search[i].imdbRating
+
+                console.log(movImg.src)
+
+                movImg.classList.add('img')
+                movInfo.classList.add('info')
+                movEl.classList.add('movie-show')
+
                 // append to html
-                htmlMovieEl.appendChild(movieContainerEl);
+                movInfo.append(movTitle, movRating)
+                movEl.append(movImg, movInfo)
+                main.appendChild(movEl)
+                
+                
     
         };
     });
-});
+};
+
+movie.addEventListener("keyup", getMovies)
+movieForm.addEventListener('submit', getMovies)

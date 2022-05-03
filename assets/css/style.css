@@ -1,5 +1,5 @@
 body {
-    background-color: #22254b;
+    background-color: rgb(83, 80, 80);
 }
 
 h1 {
@@ -11,11 +11,11 @@ label {
 }
 
 .movie-show {
-    background-color: #373b69;
+    background-color: rgb(114, 111, 111);
     border-radius: 3px;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
     width: 210px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-bottom: 20px;
 }
 
@@ -28,14 +28,16 @@ label {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
+    align-items: center;
 }
 
 .info h3 {
     margin: 0;
+    font-size: 20px;
 }
 
 .info span {
-    background-color: #22254b;
+    background-color: rgb(83, 80, 80);
     border-radius: 3px;
     padding: 0.25rem 0.5rem;
 }
