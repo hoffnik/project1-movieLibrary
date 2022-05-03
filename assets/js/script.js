@@ -119,14 +119,19 @@ movieForm.addEventListener('submit', getMovies)
 // local storage
 
 function watchlist() {
-    if (localStorage.clickcount) {
-        localStorage.clickcount = Number(localStorage.clickcount)+1;
+    if (localStorage.click) {
+        localStorage.click = Number(localStorage.click)+1;
     }
     else {
-        localStorage.clickcount = 1; 
+        localStorage.click = 1;
     }
-    document.getElementById("demo").innerHTML = localStorage.clickcount;
+    document.getElementById("demo").innerHTML = localStorage.click;
 }
 
+for (let i = 0; i < localStorage.length; i++ ) {
+    var key = localStorage.key(i);
 
-localStorage.clear()
+} 
+
+localStorage.clear();
+
