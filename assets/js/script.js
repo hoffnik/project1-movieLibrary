@@ -45,16 +45,20 @@ searchTv.addEventListener("click", getShows)
 // movie API part
 // globale variables
 var htmlMovieEl = document.getElementById('main');
+var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
 
-// call movie function
 $( "#searchMov" ).click(function(movieSearchInput) {
-    // get movieAPI
-    var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
-    var movieSearchInput = document.getElementById('movie').value;
+
+    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&s='
+
+    var movieSearchInput = document.getElementById('movie').value.trim();
     var movieURL = movieAPI + movieSearchInput
     main.innerHTML = ''
     // fetch the API
-    fetch(movieURL)
+    fetch(movieURL, requestOptions)
         .then(function(response) {
             if (response.status !== 200) {
                 document.location.status.replace('./404.html')
@@ -66,22 +70,33 @@ $( "#searchMov" ).click(function(movieSearchInput) {
         })
         .then(function(data){
             console.log(data)
-    
-            for(var i = 0; i< data.results.length; i++) {
-                console.log(data.results[i].title);
-                // create the list div to hold information
-                var movieContainerEl = document.createElement('div');
-                movieContainerEl.className = 'movie-container';
-                // check if needed, was thinking that we might need that to store it in local storage
-                // movieContainerEl.setAttribute('data-movie-id', movieCounter);
         
-                // create image and parse information from movie element
-                // not sure how we would add an alt text, seems like this info is not provided
-                movieContainerEl.innerHTML = '<img src="' + data.results[i].image + '" width="500" height="600"><h3 class="movie-title">' + data.results[i].title + '</h3><span class="movie-rating">' + data.results[i].rating + '</span>';
+            
+            for(var i = 0; i< data.Search.length; i++) {
+                console.log(data.Search[i].Title);
+                    // create the list div to hold information
+                    var movieEl = document.createElement('div')
+                    var movieImg = document.createElement('img')
+                    var movieInfo = document.createElement('div')
+                    var movieTitle = document.createElement('h3')
+                    var movieRating = document.createElement('span')
+                    var movieExpand = document.createElement('div')
                 
-                // append to html
-                htmlMovieEl.appendChild(movieContainerEl);
+                    movieRating = data.Search[i].Rating
+                    movieImg.src = data.Search[i].Poster
+                    movieTitle = data.Search[i].Title
+                    movieExpand = data.Search[i].Title
+                    // movieRating = 
     
+                    movieImg.classList.add('img')
+                    movieInfo.classList.add('info')
+                    movieEl.classList.add('movie-show')
+                    // movieExpand.setAttribute('id', 'accordion')
+    
+                    movieInfo.append(movieTitle)
+                    movieEl.append(movieImg,movieInfo)
+                    htmlMovieEl.appendChild(movieEl)
+            
         };
     });
 });
