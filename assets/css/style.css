@@ -40,7 +40,7 @@ label {
     padding: 0.25rem 0.5rem;
 }
 
-.watchlist h2 , p {
+legend {
     color: #eee;
 }
 

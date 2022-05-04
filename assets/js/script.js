@@ -27,10 +27,12 @@ function getShows(event) {
             var showInfo = document.createElement('div')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
-        
+            var watchList = document.createElement('button')
+
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
+            
 
             showImg.classList.add('img')
             showInfo.classList.add('info')
@@ -117,21 +119,17 @@ movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
 
 // local storage
+var btnInsert = document.getElementById("btnInsert");
+var btnOutpt = document.getElementById("btnOutpt");
 
-function watchlist() {
-    if (localStorage.click) {
-        localStorage.click = Number(localStorage.click)+1;
-    }
-    else {
-        localStorage.click = 1;
-    }
-    document.getElementById("demo").innerHTML = localStorage.click;
-}
+btnInsert.onclick = function() {
+    
 
-for (let i = 0; i < localStorage.length; i++ ) {
+
+};
+
+for (let i = 0; i < localStorage.length; i++) {
     var key = localStorage.key(i);
 
-} 
-
-localStorage.clear();
-
+    btnOutpt.innerHTML += '${key}<br />';
+}
