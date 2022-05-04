@@ -1,3 +1,9 @@
+$(function() {
+    $( "#accordion" ).accordion({
+       collapsible: true
+    });
+ });
+
 // var searchTv = document.getElementById('searchTv')
 var show = document.getElementById('tv')
 var tvForm = document.getElementById('tvForm')
@@ -60,8 +66,9 @@ function getMovies(event) {
     var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&s='
     var movieURL = movieAPI + movie.value
     main.innerHTML = ""
+    var movieId = 0
 
-    console.log(movieURL)
+    // console.log(movieURL)
     // fetch the API
     fetch(movieURL)
         .then(function(response) {
@@ -70,14 +77,38 @@ function getMovies(event) {
             } else {
                 // convert to JSON object
                 return response.json();
-                console.log(response);
+                // console.log(response);
             } 
         })
         .then(function(data){
             console.log(data)
+             var searchResults = data;
     
             for(var i = 0; i< data.Search.length; i++) {
-                console.log(data.Search[i].title);
+                // console.log(data.Search[i].title);
+
+                var id = data.Search[i].imdbID
+                console.log(id)
+                // debugger;
+                
+                // put return since otherwise it would not fetch the information until it ran through the whole loop
+                fetch('http://www.omdbapi.com/?apikey=b1a91290&i=' + id)
+                .then(function(response) {
+                    if (response.status !== 200) {
+                        document.location.status.replace('./404.html')
+                    } else {
+                        // convert to JSON object
+                        return response.json();
+                        console.log(response);
+                        // debugger;
+                    } 
+                })
+                
+                .then(function(movieData){
+                    console.log(movieData)
+                });
+                
+                
                 // create the list div to hold information
                 var movieContainerEl = document.createElement('div');
                 movieContainerEl.className = 'movie-container';
@@ -89,25 +120,31 @@ function getMovies(event) {
                 var movEl = document.createElement('div')
                 var movImg = document.createElement('img')
                 var movInfo = document.createElement('div')
+                var movExpand = document.createElement('div')
                 var movTitle = document.createElement('h3')
                 var movRating = document.createElement('span')
             
                 movImg.src = data.Search[i].Poster
                 movTitle.innerHTML = data.Search[i].Title
-                movRating.innerHTML = data.Search[i].imdbRating
-
-                console.log(movImg.src)
+                movExpand.innerHTML = 'This is a test'
+                // movRating.innerHTML = movieData[i].Actors
+                // console.log(movImg.src)
 
                 movImg.classList.add('img')
                 movInfo.classList.add('info')
                 movEl.classList.add('movie-show')
+                movExpand.setAttribute('id', 'accordion')
+                movExpand.setAttribute('data-movie-id', movieId)
+
 
                 // append to html
                 movInfo.append(movTitle, movRating)
-                movEl.append(movImg, movInfo)
+                movEl.append(movImg, movInfo, movExpand)
                 main.appendChild(movEl)
-                
-                
+            
+
+               movieId++; 
+               console.log(movieId) 
     
         };
     });
