@@ -15,13 +15,18 @@ function getShows(event) {
     console.log(tvUrl)
     fetch(tvUrl)
         .then(function (response){
-            return response.json();
+            if (response.status !== 200) {
+                document.location.status.replace('./404.html')
+            } else {
+                // convert to JSON object
+                return response.json();
+                console.log(response);
+            } 
         })
         .then(function(data){
             console.log(data)
             
         for (i=0; i < data.length; i++) {
-            console.log(data[i].show.name)
             var showEl = document.createElement('div')
             var showImg = document.createElement('img')
             var showInfo = document.createElement('div')
@@ -31,6 +36,10 @@ function getShows(event) {
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
+
+            if (data[i].show.rating.average == null) {
+                showRating.innerHTML = 'NA'
+            }
 
             showImg.classList.add('img')
             showInfo.classList.add('info')
@@ -57,7 +66,7 @@ function getMovies(event) {
     event.preventDefault();
     // get movieAPI
     // var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
-    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&s='
+    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&type=movie&s='
     var movieURL = movieAPI + movie.value
     main.innerHTML = ""
     var movieId = 0
@@ -135,9 +144,13 @@ function getMovies(event) {
                 movInfo.append(movTitle, movRating)
                 movEl.append(movImg, movInfo, movExpand)
                 main.appendChild(movEl)
-            
 
-               movieId++; 
+                if (data.Search[i].Poster == "N/A") {
+                    movInfo.style.display = "none"
+                    movEl.style.display = "none"
+                }
+                
+                movieId++; 
                console.log(movieId) 
     
         };
