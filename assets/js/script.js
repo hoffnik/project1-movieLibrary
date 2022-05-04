@@ -44,11 +44,6 @@ function getShows(event) {
             main.appendChild(showEl)
             
 
-            watchList.onclick = function () {
-                var key = showTitle;
-        
-                console.log(key);
-            };
         }
         
     })
@@ -120,11 +115,6 @@ function getMovies(event) {
                 movEl.append(movImg, movInfo, watchList)
                 main.appendChild(movEl)
                 
-                watchList.onclick = function () {
-                    var key = movTitle;
-
-                    console.log(key);
-                };
                 
     
         };
