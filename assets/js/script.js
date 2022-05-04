@@ -32,15 +32,17 @@ function getShows(event) {
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
-            
+            watchList.innerHTML = "Add to Watch List"
 
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
+            
 
             showInfo.append(showTitle, showRating)
-            showEl.append(showImg, showInfo)
+            showEl.append(showImg, showInfo, watchList)
             main.appendChild(showEl)
+            
         }
     })
     
@@ -93,10 +95,12 @@ function getMovies(event) {
                 var movInfo = document.createElement('div')
                 var movTitle = document.createElement('h3')
                 var movRating = document.createElement('span')
+                var watchList = document.createElement('button')
             
                 movImg.src = data.Search[i].Poster
                 movTitle.innerHTML = data.Search[i].Title
                 movRating.innerHTML = data.Search[i].imdbRating
+                watchList.innerHTML = "Add to Watch List"
 
                 console.log(movImg.src)
 
@@ -106,7 +110,7 @@ function getMovies(event) {
 
                 // append to html
                 movInfo.append(movTitle, movRating)
-                movEl.append(movImg, movInfo)
+                movEl.append(movImg, movInfo, watchList)
                 main.appendChild(movEl)
                 
                 
@@ -119,17 +123,8 @@ movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
 
 // local storage
-var btnInsert = document.getElementById("btnInsert");
-var btnOutpt = document.getElementById("btnOutpt");
-
-btnInsert.onclick = function() {
-    
 
 
-};
+watchList.onclick = function () {
 
-for (let i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-
-    btnOutpt.innerHTML += '${key}<br />';
 }
