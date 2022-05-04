@@ -43,9 +43,10 @@ function getShows(event) {
             showEl.append(showImg, showInfo, watchList)
             main.appendChild(showEl)
             
+
             watchList.onclick = function () {
                 var key = showTitle;
-
+        
                 console.log(key);
             };
         }
@@ -121,7 +122,7 @@ function getMovies(event) {
                 
                 watchList.onclick = function () {
                     var key = movTitle;
-                    
+
                     console.log(key);
                 };
                 
@@ -134,11 +135,4 @@ movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
 
 // local storage
-var btnOutpt = document.getElementById('btnOutpt');
 
-for (let i = 0; i < localStorage.length; i++) {
-    var key = localStorage.key(i);
-    var value = localStorage.getItem(key);
-
-    btnOutpt.innerHTML = "${key} <br />";
-}
