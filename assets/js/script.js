@@ -1,9 +1,3 @@
-$(function() {
-    $( "#accordion" ).accordion({
-       collapsible: true
-    });
- });
-
 // var searchTv = document.getElementById('searchTv')
 var show = document.getElementById('tv')
 var tvForm = document.getElementById('tvForm')
