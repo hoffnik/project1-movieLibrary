@@ -8,6 +8,15 @@ As A movie enthusiast <br>
 I WANT to use a library to find more movies and TV shows to watch <br>
 SO THAT I can create a watchlist with everything that I want to watch in the future.
 
+## Programs Used
+* HTML
+* CSS
+* JavaScript
+
+## Resources Used
+Nested fetch() methods
+* https://gomakethings.com/how-to-use-the-fetch-method-to-make-multiple-api-calls-with-vanilla-javascript/
+
 ## API's used
 * Movies: OMDb API
 * * http://www.omdbapi.com/
