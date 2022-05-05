@@ -43,6 +43,12 @@ function getShows(event) {
             showEl.append(showImg, showInfo, watchList)
             main.appendChild(showEl)
             
+            watchList.onclick = function () {
+                var key = showTitle;
+
+                console.log(key);
+            }
+        
 
         }
         
