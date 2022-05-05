@@ -30,12 +30,17 @@ function getShows(event) {
             var showEl = document.createElement('div')
             var showImg = document.createElement('img')
             var showInfo = document.createElement('div')
+            var tvExpand = document.createElement('div')
+            var expandTitle = document.createElement('h3')
+            var expandInfo = document.createElement('span')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
         
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
+            expandTitle.innerHTML = 'More Info'
+            expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
 
             if (data[i].show.rating.average == null) {
                 showRating.innerHTML = 'NA'
@@ -44,10 +49,20 @@ function getShows(event) {
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
+            expandInfo.classList.add('expand')
+            tvExpand.setAttribute('id', 'accordion')
 
             showInfo.append(showTitle, showRating)
-            showEl.append(showImg, showInfo)
+            tvExpand.append(expandTitle, expandInfo)
+            showEl.append(showImg, showInfo, tvExpand)
             main.appendChild(showEl)
+
+            $(function() {
+                $( "#accordion" ).accordion({
+                collapsible: true,
+                active: false
+                });
+            });
         }
     })
     
@@ -56,7 +71,7 @@ function getShows(event) {
 show.addEventListener("keyup", getShows)
 tvForm.addEventListener('submit', getShows)
 
-// movie API part
+// ___________movie API part______________________________________
 // globale variables
 var movieSearchInput = document.querySelector('input[id="movie"]').value;
 var htmlMovieEl = document.getElementById('main');
@@ -124,24 +139,29 @@ function getMovies(event) {
                 var movImg = document.createElement('img')
                 var movInfo = document.createElement('div')
                 var movExpand = document.createElement('div')
+                var expandTitle = document.createElement('h3')
+                var expandInfo = document.createElement('span')
                 var movTitle = document.createElement('h3')
                 var movRating = document.createElement('span')
             
                 movImg.src = data.Search[i].Poster
                 movTitle.innerHTML = data.Search[i].Title
-                movExpand.innerHTML = 'This is a test'
+                expandTitle.innerHTML = 'More Info'
+                expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
                 // movRating.innerHTML = movieData[i].Actors
                 // console.log(movImg.src)
 
                 movImg.classList.add('img')
                 movInfo.classList.add('info')
                 movEl.classList.add('movie-show')
+                expandInfo.classList.add('expand')
                 movExpand.setAttribute('id', 'accordion')
                 movExpand.setAttribute('data-movie-id', movieId)
 
 
                 // append to html
                 movInfo.append(movTitle, movRating)
+                movExpand.append(expandTitle, expandInfo)
                 movEl.append(movImg, movInfo, movExpand)
                 main.appendChild(movEl)
 
@@ -152,10 +172,20 @@ function getMovies(event) {
                 
                 movieId++; 
                console.log(movieId) 
+
     
-        };
-    });
+                // debugger;
+                $(function() {
+                    $( "#accordion" ).accordion({
+                    collapsible: true,
+                    active: false
+                    });
+                });
+            };
+        });
 };
+
+
 
 movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
