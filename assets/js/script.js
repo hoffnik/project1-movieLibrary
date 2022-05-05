@@ -6,6 +6,67 @@ var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
+function pagePlaceHolder (event) {
+    event.preventDefault();
+    var placeAPI = "https://imdb-api.com/en/API/Top250Movies/k_xuhun4lc";
+
+    fetch(placeAPI)
+        .then(function (response){
+            if (response.status !== 200) {
+                document.location.status.replace('./404.html')
+            } else {
+                // convert to JSON object
+                return response.json();
+                console.log(response);
+            } 
+        })
+        .then(function(data){
+            console.log(data)
+            
+        for (i=0; i < data.items.length; i++) {
+            var showEl = document.createElement('div')
+            var showImg = document.createElement('img')
+            var showInfo = document.createElement('div')
+            var tvExpand = document.createElement('div')
+            var expandTitle = document.createElement('h3')
+            var expandInfo = document.createElement('span')
+            var showTitle = document.createElement('h3')
+            var showRating = document.createElement('span')
+        
+            showImg.src = data.items[i].image
+            showTitle.innerHTML = data.items[i].fullTitle
+            showRating.innerHTML = data.items[i].imDbRating
+            expandTitle.innerHTML = 'More Info'
+            expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
+
+            if (data.items[i].imDbRating == null) {
+                showRating.innerHTML = 'NA'
+            }
+
+            showImg.classList.add('img')
+            showInfo.classList.add('info')
+            showEl.classList.add('movie-show')
+            expandInfo.classList.add('expand')
+            tvExpand.setAttribute('id', 'accordion')
+
+            showInfo.append(showTitle, showRating)
+            tvExpand.append(expandTitle, expandInfo)
+            showEl.append(showImg, showInfo, tvExpand)
+            main.appendChild(showEl)
+
+            $(function() {
+                $( "#accordion" ).accordion({
+                collapsible: true,
+                active: false
+                });
+            });
+        }
+    })
+    
+};
+
+window.addEventListener('load', pagePlaceHolder)
+
 function getShows(event) {
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
