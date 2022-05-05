@@ -77,10 +77,12 @@ label {
     min-height: 0; /* support: IE7 */
     font-size: 100%;
     border:1px solid #FDF8E4;
+    border-radius:0.5rem;
     background:#db785a;
     color:#fff;
     }
 
 .expand {
     color: white;
+    padding: 1rem;
 }
