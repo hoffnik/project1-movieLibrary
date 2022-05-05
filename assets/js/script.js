@@ -107,7 +107,6 @@ function getMovies(event) {
 
                 var id = data.Search[i].imdbID
                 console.log(id)
-                // debugger;
                 
                 // put return since otherwise it would not fetch the information until it ran through the whole loop
                 fetch('http://www.omdbapi.com/?apikey=b1a91290&i=' + id)
