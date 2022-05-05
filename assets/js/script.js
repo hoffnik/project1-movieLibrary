@@ -142,7 +142,7 @@ function getMovies(event) {
     event.preventDefault();
     // get movieAPI
     // var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
-    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&type=movie&s='
+    var movieAPI = 'https://www.omdbapi.com/?apikey=b1a91290&type=movie&s='
     var movieURL = movieAPI + movie.value
     main.innerHTML = ""
     var movieId = 0
@@ -170,7 +170,7 @@ function getMovies(event) {
                 console.log(id)
                 
                 // put return since otherwise it would not fetch the information until it ran through the whole loop
-                fetch('http://www.omdbapi.com/?apikey=b1a91290&i=' + id)
+                fetch('https://www.omdbapi.com/?apikey=b1a91290&i=' + id)
                 .then(function(response) {
                     if (response.status !== 200) {
                         document.location.status.replace('./404.html')
