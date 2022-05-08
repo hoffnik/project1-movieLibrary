@@ -8,7 +8,7 @@ var main = document.getElementById('main')
 
 function pagePlaceHolder (event) {
     event.preventDefault();
-    var placeAPI = "https://imdb-api.com/en/API/Top250Movies/k_xuhun4lc";
+    var placeAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_xuhun4lc";
 
     fetch(placeAPI)
         .then(function (response){
