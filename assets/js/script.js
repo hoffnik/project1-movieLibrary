@@ -108,16 +108,16 @@ function getShows(event) {
             var showImg = document.createElement('img')
             var showInfo = document.createElement('div')
             var tvExpand = document.createElement('div')
-            var expandTitle = document.createElement('h3')
-            var expandInfo = document.createElement('span')
+            // var expandTitle = document.createElement('h3')
+            // var expandInfo = document.createElement('span')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
         
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
-            expandTitle.innerHTML = 'More Info'
-            expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
+            // expandTitle.innerHTML = 'More Info'
+            // expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
 
             if (data[i].show.rating.average == null) {
                 showRating.innerHTML = 'NA'
@@ -126,20 +126,13 @@ function getShows(event) {
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
-            expandInfo.classList.add('expand')
-            tvExpand.setAttribute('id', 'accordion')
+            // expandInfo.classList.add('expand')
+            // tvExpand.setAttribute('id', 'accordion')
 
             showInfo.append(showTitle, showRating)
-            tvExpand.append(expandTitle, expandInfo)
+            // tvExpand.append(expandTitle, expandInfo)
             showEl.append(showImg, showInfo, tvExpand)
             main.appendChild(showEl)
-
-            $(function() {
-                $( "#accordion" ).accordion({
-                collapsible: true,
-                active: false
-                });
-            });
         }
     })
     
