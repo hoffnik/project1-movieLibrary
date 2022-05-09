@@ -5,9 +5,12 @@ var tvForm = document.getElementById('tvForm')
 var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
+// var for modal
+var modal = document.getElementById("myModal");
 
 var pagePlaceHolder = function(event) {
     event.preventDefault();
+    main.innerHTML = ""
     var placeAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_xuhun4lc";
 
     fetch(placeAPI)
@@ -49,20 +52,37 @@ var loadTopMovies = function(movies) {
         var movRating = document.createElement('span');
         movRating.textContent = movies.items[i].imDbRating;
 
+        // create info div for title and year styling
+        var movieInfo = document.createElement('div')
+        movieInfo.append(movTitle, movRating)
+        movieInfo.classList.add('info')
+
        // append to link
-        movieImageEl.append(movImg, movTitle, movRating);
+        movieImageEl.append(movImg, movieInfo);
        
         // append to container
         movieContainerEl.append(movieImageEl);
 
         // append container to DOM
         htmlMovieEl.appendChild(movieContainerEl);
+
+        // add NA in place of blank scores
+        if (movies.items[i].imDbRating == "") {
+            movRating.innerHTML = 'NA'
+        }
     }
 };
 
 window.addEventListener('load', pagePlaceHolder);
 
+// Load home page with top movies on click of website name
+var home = document.getElementById('home')
+home.addEventListener('click', pagePlaceHolder)
+
 function getShows(event) {
+    if (tvForm == "") {
+        modal.style.display = "block";
+    }
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
