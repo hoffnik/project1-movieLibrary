@@ -41,7 +41,18 @@ label {
     width: 210px;
     margin-right: 20px;
     margin-bottom: 20px;
+    position: relative;
 }
+
+/* .plot {
+    background-color:#483434;
+    position:absolute;
+    
+}
+
+.img:hover .plot {
+    transform: translateY(0);
+} */
 
 .img {
     height: 325px;
@@ -56,7 +67,7 @@ label {
     align-items: center;
 }
 
-.info h3 {
+.title {
     margin: 0;
     font-size: 15px;
 }

@@ -32,7 +32,9 @@ function getShows(event) {
             var showInfo = document.createElement('div')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
+            // var showPlot = document.createElement('div')
         
+            // showPlot.innerHTML = data[i].show.summary
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
@@ -41,6 +43,8 @@ function getShows(event) {
                 showRating.innerHTML = 'NA'
             }
 
+            // showPlot.classList.add('plot')
+            showTitle.classList.add('title')
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
@@ -48,10 +52,18 @@ function getShows(event) {
             showInfo.append(showTitle, showRating)
             showEl.append(showImg, showInfo)
             main.appendChild(showEl)
+            // showEl.appendChild(showPlot)
+
+             showEl.addEventListener('click', displayInfo)
         }
     })
     
 };
+
+function displayInfo() {
+    var info = this
+    console.log(info)
+}
 
 show.addEventListener("keyup", getShows)
 tvForm.addEventListener('submit', getShows)
@@ -115,7 +127,6 @@ function getMovies(event) {
                 main.appendChild(movEl)
 
                 if (data.Search[i].Poster == "N/A") {
-                    movInfo.style.display = "none"
                     movEl.style.display = "none"
                 }
                 
