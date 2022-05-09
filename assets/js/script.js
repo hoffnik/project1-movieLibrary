@@ -7,7 +7,7 @@ var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
 
-var getShowList = function getShows(event) {
+function getShows(event) {
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
@@ -63,7 +63,7 @@ var movieSearchInput = document.querySelector('input[id="movie"]').value;
 var htmlMovieEl = document.getElementById('main');
 
 //movie function
-var getMovieList = function getMovies(event) {
+function getMovies(event) {
     event.preventDefault();
     // get movieAPI
     // var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
@@ -131,6 +131,9 @@ movieForm.addEventListener('submit', getMovieList)
 // local storage
 
 //All movie and tvshow results will have an "Add to Watch List" button
+var addWatchbtn = function() {
+
+}
 
 //On "Add to Watch List" click div element is added to watchListPage.html
 
