@@ -48,3 +48,34 @@ var displayMovieInfo = function(movie) {
 };
 
 getMovieID();
+
+var getTvID = function () {
+    var queryString = document.location.search;
+    var tvId = queryString.split("=")[1];
+    var tvUrl = 'https://api.tvmaze.com/lookup/shows?thetvdb=' + tvId;
+
+    if(tvId) {
+        fetch(tvUrl).then(function(response) {
+            if(response.ok){
+                response.json().then(function(data) {
+                    displayTvInfo(data);
+                    console.log(data);
+                })
+            } else {
+                document.location.replace("./index.html");
+            }
+        });
+    }
+};
+
+var displayTvInfo = function(show) {
+    titleImage.setAttribute('src', show.image.medium)
+    movieTitle.textContent = show.name;
+    movieDescription.textContent = show.summary;
+    movieYear.textContent = show.premiered;
+    movieGenre.textContent = show.genres[0];
+    movieLength.textContent = show.averageRuntime;
+    movieRating.textContent = show.rating.average;
+}
+
+getTvID();
