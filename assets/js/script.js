@@ -136,17 +136,6 @@ var requestOptions = {
     redirect: 'follow'
   };
 
-<<<<<<< HEAD
-$( "#searchMov" ).click(function(movieSearchInput) {
-
-    var movieAPI = 'http://www.omdbapi.com/?apikey=b1a91290&s='
-
-    var movieSearchInput = document.getElementById('movie').value.trim();
-    var movieURL = movieAPI + movieSearchInput
-    main.innerHTML = ''
-    // fetch the API
-    fetch(movieURL, requestOptions)
-=======
 function getMovies(event) {
     event.preventDefault();
     var movieSearchInput = document.getElementById('movie').value;
@@ -155,7 +144,6 @@ function getMovies(event) {
     main.innerHTML = ""
 
     fetch(movieURL)
->>>>>>> develop
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data){
@@ -165,40 +153,6 @@ function getMovies(event) {
                 document.location.status.replace('./404.html')
             } 
         })
-<<<<<<< HEAD
-        .then(function(data){
-            console.log(data)
-        
-            
-            for(var i = 0; i< data.Search.length; i++) {
-                console.log(data.Search[i].Title);
-                    // create the list div to hold information
-                    var movieEl = document.createElement('div')
-                    var movieImg = document.createElement('img')
-                    var movieInfo = document.createElement('div')
-                    var movieTitle = document.createElement('h3')
-                    var movieRating = document.createElement('span')
-                    var movieExpand = document.createElement('div')
-                
-                    movieRating = data.Search[i].Rating
-                    movieImg.src = data.Search[i].Poster
-                    movieTitle = data.Search[i].Title
-                    movieExpand = data.Search[i].Title
-                    // movieRating = 
-    
-                    movieImg.classList.add('img')
-                    movieInfo.classList.add('info')
-                    movieEl.classList.add('movie-show')
-                    // movieExpand.setAttribute('id', 'accordion')
-    
-                    movieInfo.append(movieTitle)
-                    movieEl.append(movieImg,movieInfo)
-                    htmlMovieEl.appendChild(movieEl)
-            
-        };
-    });
-});
-=======
         .catch(function(error) {
             alert("Unable to connect to API")
         });
@@ -245,4 +199,3 @@ var displayMovies = function(movies) {
 
 movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
->>>>>>> develop
