@@ -167,20 +167,30 @@ var displayMovies = function(movies) {
 
         // create title element
         var movTitle = document.createElement('h3');
-        movTitle.textContent = movies.Search[i].Title;
+        movTitle.innerHTML = movies.Search[i].Title;
         
         // create year element
-        var movYear = document.createElement('span');
-        movYear.textContent = movies.Search[i].Year;
+        var movYear = document.createElement('h3');
+        movYear.innerHTML = movies.Search[i].Year;
+
+        // append title and year to movInfo for styling
+        var movInfo = document.createElement('div')
+        movInfo.append(movTitle, movYear)
+        movInfo.classList.add('info');
 
        // append to link
-        movieImageEl.append(movImg, movTitle, movYear);
+        movieImageEl.append(movImg, movInfo);
        
         // append to container
         movieContainerEl.append(movieImageEl);
 
         // append container to DOM
         htmlMovieEl.appendChild(movieContainerEl);
+
+        // hide movie results that do not have posters
+        if (movies.Search[i].Poster == "N/A") {
+            movieContainerEl.style.display = "none"
+        }
     }    
 };
 
