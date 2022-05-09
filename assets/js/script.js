@@ -6,7 +6,7 @@ var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
-function pagePlaceHolder (event) {
+var pagePlaceHolder = function(event) {
     event.preventDefault();
     var placeAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_xuhun4lc";
 
@@ -15,43 +15,52 @@ function pagePlaceHolder (event) {
             if (response.status !== 200) {
                 document.location.status.replace('./404.html')
             } else {
-                // convert to JSON object
                 return response.json();
-                console.log(response);
             } 
         })
         .then(function(data){
-            console.log(data)
-            
-        for (i=0; i < data.items.length; i++) {
-            var showEl = document.createElement('div')
-            var showImg = document.createElement('img')
-            var showInfo = document.createElement('div')
-            var showTitle = document.createElement('h3')
-            var showRating = document.createElement('span')
-        
-            showImg.src = data.items[i].image
-            showTitle.innerHTML = data.items[i].fullTitle
-            showRating.innerHTML = data.items[i].imDbRating
-
-            if (data.items[i].imDbRating == null) {
-                showRating.innerHTML = 'NA'
-            }
-
-            showImg.classList.add('img')
-            showInfo.classList.add('info')
-            showEl.classList.add('movie-show')
-            
-
-            showInfo.append(showTitle, showRating)
-            showEl.append(showImg, showInfo)
-            main.appendChild(showEl)
-        }
-    })
-    
+            loadTopMovies(data);
+            console.log(data);
+        });
 };
 
-window.addEventListener('load', pagePlaceHolder)
+var loadTopMovies = function(movies) {
+    for (i=0; i < movies.items.length; i++) {
+        // create container for each movie
+        var movieContainerEl = document.createElement('div');
+        movieContainerEl.classList = 'movie-show';
+
+        // create link for each movie
+        var movieId = movies.items[i].id;
+        var movieImageEl = document.createElement('a');
+        movieImageEl.className = 'movie-container';
+        movieImageEl.setAttribute("href", "./details.html?movieid=" + movieId);
+
+        // create image element
+        var movImg = document.createElement('img');
+        movImg.setAttribute("src", movies.items[i].image)
+        movImg.classList = 'img';
+
+        // create title element
+        var movTitle = document.createElement('h3');
+        movTitle.textContent = movies.items[i].fullTitle;
+        
+        // create year element
+        var movRating = document.createElement('span');
+        movRating.textContent = movies.items[i].imDbRating;
+
+       // append to link
+        movieImageEl.append(movImg, movTitle, movRating);
+       
+        // append to container
+        movieContainerEl.append(movieImageEl);
+
+        // append container to DOM
+        htmlMovieEl.appendChild(movieContainerEl);
+    }
+};
+
+window.addEventListener('load', pagePlaceHolder);
 
 function getShows(event) {
     event.preventDefault();
