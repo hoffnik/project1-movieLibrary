@@ -8,13 +8,18 @@ body {
     /* background-color: rgb(83, 80, 80); */
     background-color: #483434;
 }
+
+#home {
+    cursor: pointer;
+
+}
 header {
     background-color:#6B4F4F
 }
 h1 {
     color:#eee;
     font-size: 20px;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 label {
@@ -96,6 +101,15 @@ label {
     background: #db785a;
     font-weight: 500;
     
+}
+
+#detailsInfo {
+    background-color: #6B4F4F;
+    border-radius: 30px;
+}
+
+#movie-title {
+    font-size: 30px;
 }
 
 .modal {

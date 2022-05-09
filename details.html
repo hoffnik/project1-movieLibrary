@@ -5,50 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Details</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <div class="container header">
-        <img src="">
-        <a href="./index.html" class="header-btn">Go Back To Home</a>
-    </div>
-
-    <div class="container movie-details">
-        <div class="d-flex bacground-white">
-            <div class="col-md-3 left-column">
+    
+        <div class="container mt-5 col-9 movie-details d-flex flex-wrap justify-content-start mx-auto my-3">
+            <div class="mr-3 mb-3">
                 <img src="" id="movie-image">
             </div>
-            <div class="col-md-9">
-                <h1 id="movie-title" class="p-3"></h1>
-                <div class="p-3 mb-2 bg-light">
-                    <span class="badge bg-info text-dark" id="year"></span>
-                    <span class="badge bg-info text-dark" id="genre"></span>
-                    <span class="badge bg-info text-dark" id="length"></span>
-                    <span class="badge bg-info text-dark" id="rating"></span>
+            <div id="detailsInfo" class="col-8">
+                <div class="d-flex flex-wrap justify-content-start align-items-center pt-4 pr-4">
+                    <h1 id="movie-title" class=""></h1>
+                    <div class="ml-3">
+                        <span class="badge bg-info text-dark" id="year"></span>
+                        <span class="badge bg-info text-dark" id="genre"></span>
+                        <span class="badge bg-info text-dark" id="length"></span>
+                        <span class="badge bg-info text-dark" id="rating"></span>
+                    </div>
                 </div>
-
-                <div class="" id="actors-overview">
-                    <h2 class="">Actors:</h2>
-                    <ul id="actors-list">
+                
+                <div class="p-4" id="actors-overview">
+                    <h2 class="text-secondary h4">Actors:</h2>
+                    <ul class="text-light list-unstyled" id="actors-list">
                         
                     </ul>
-
+                    
                 </div>
-
-                <div id="movie-description" class="p-3 mb-2 bg-light text-dark">
-                    <h3>Movie Description:</h2>
-                    <p id="description"></p>
-                </div>
-
-                <div id="trailer-element">
-
+                
+                <div id="movie-description" class="p-4 mb-1">
+                    <h3 class="text-secondary">Movie Description:</h2>
+                        <p class="text-light" id="description"></p>
+                    </div>
+                    
+                    <div id="trailer-element">
+                        
+                    </div>
                 </div>
             </div>
+            
         </div>
-
-    </div>
-
+        <div class="container header">
+            <img src="">
+            <a href="./index.html" class="header-btn mb-3">Go Back To Home</a>
+        </div>
+        
     <script src="./assets/js/details.js"></script>
 </body>
 </html>
