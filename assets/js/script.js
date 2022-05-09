@@ -6,6 +6,7 @@ var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
+var pageContentEl = document.querySelector("#page-content")
 var watchlists = [];
 
 var getShowList = function getShows(event) {
@@ -135,6 +136,7 @@ movieForm.addEventListener('submit', getMovieList)
 
 // local storage
 
+
 var createwatchListActions = function (watchListId) {
     // create container to hold elements
     var actionContainerEl = document.createElement("div");
@@ -165,3 +167,31 @@ var loadWatchlist = function() {
     }
 }
 
+var deletewatchList = function (watchListId) {
+    console.log(watchListId);
+    // find task list element with taskId value and remove it
+    var watchListSelected = document.querySelector(
+      ".watchlist-item[data-task-id='" + watchListId + "']"
+    );
+    wacthListSelected.remove();
+  
+    // create new array to hold updated list of tasks
+    var updatedwatchListArr = [];
+  
+    // loop through current tasks
+    for (var i = 0; i < tasks.length; i++) {
+      // if tasks[i].id doesn't match the value of taskId, let's keep that task and push it into the new array
+      if (tasks[i].id !== parseInt(taskId)) {
+        updatedwatchListArr.push(tasks[i]);
+      }
+    }
+  
+    // reassign tasks array to be the same as updatedTaskArr
+    tasks = updatedTaskArr;
+    saveWatchlist();
+  };
+  
+
+pageContentEl.addEventListener("click", )
+
+loadWatchlist();
