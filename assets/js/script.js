@@ -6,6 +6,8 @@ var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
 
+var watchlists = [];
+
 function getShows(event) {
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
@@ -132,3 +134,18 @@ movieForm.addEventListener('submit', getMovies)
 
 // local storage
 
+
+
+var saveWatchlist = function () {
+    localStorage.setItem("watchlists", JSON.stringify(watchlists));
+}
+var loadWatchlist = function() {
+    var savedWatchList = localStorage.getItem("watchlists");
+    if (!savedWatchList) {
+        return false;
+    }
+    savedTasks = JSON.parse(savedWatchList);
+    for (var i = 0; i < savedWatchlist.length; i++) {
+        createWatchListEl(savedWatchList[i]);
+    }
+}
