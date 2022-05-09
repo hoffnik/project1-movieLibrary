@@ -54,8 +54,8 @@ function getShows(event) {
     
 };
 
-show.addEventListener("keyup", getShowList)
-tvForm.addEventListener('submit', getShowList)
+show.addEventListener("keyup", getShows)
+tvForm.addEventListener('submit', getShows)
 
 // movie API part
 // globale variables
@@ -125,14 +125,22 @@ function getMovies(event) {
     });
 };
 
-movie.addEventListener("keyup", getMovieList)
-movieForm.addEventListener('submit', getMovieList)
+movie.addEventListener("keyup", getMovies)
+movieForm.addEventListener('submit', getMovies)
 
 // local storage
 
 //All movie and tvshow results will have an "Add to Watch List" button
 var addWatchbtn = function() {
+    var watchListContainerEl = document.createElement("div");
+    watchListContainerEl.className = "add-to-wacthList-action";
 
+    //create "Add to Watch List" 
+    var watchListbtnEl = document.createElement("button");
+    watchListbtnEl.textContent = "Add to Watch List";
+    watchListbtnEl.className = "btn addwatchlist-btn";
+    watchListbtnEl.setAttribute("watch-list-add-id", );
+    actionContainerEl.appendChild(watchListbtnEl)
 }
 
 //On "Add to Watch List" click div element is added to watchListPage.html
