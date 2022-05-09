@@ -31,10 +31,10 @@ var displayMovieInfo = function(movie) {
     titleImage.setAttribute('src', movie.Poster);
     movieTitle.textContent = movie.Title;
     movieDescription.textContent = movie.Plot;
-    movieYear.textContent = movie.Year;
-    movieGenre.textContent = movie.Genre;
-    movieLength.textContent = movie.Runtime;
-    movieRating.textContent = movie.imdbRating;
+    movieYear.textContent = 'Year Released: ' + movie.Year;
+    movieGenre.textContent = 'Genre: ' + movie.Genre;
+    movieLength.textContent = 'Length: ' + movie.Runtime;
+    movieRating.textContent = 'Rating: ' + movie.imdbRating;
 
     var actorsStr = movie.Actors;
     var actorsArr = new Array();
