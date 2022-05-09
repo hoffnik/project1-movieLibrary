@@ -104,7 +104,7 @@ function getShows(event) {
             console.log(data)
             
         for (i=0; i < data.length; i++) {
-            var showEl = document.createElement('div')
+            var showEl = document.createElement('a')
             var showImg = document.createElement('img')
             var showInfo = document.createElement('div')
             var tvExpand = document.createElement('div')
