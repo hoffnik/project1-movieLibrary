@@ -8,8 +8,7 @@ var main = document.getElementById('main')
 
 var watchlists = [];
 
-
-function getShows(event) {
+var getShowList = function getShows(event) {
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
@@ -60,8 +59,8 @@ function getShows(event) {
     
 };
 
-show.addEventListener("keyup", getShows)
-tvForm.addEventListener('submit', getShows)
+show.addEventListener("keyup", getShowList)
+tvForm.addEventListener('submit', getShowList)
 
 // movie API part
 // globale variables
@@ -69,7 +68,7 @@ var movieSearchInput = document.querySelector('input[id="movie"]').value;
 var htmlMovieEl = document.getElementById('main');
 
 //movie function
-function getMovies(event) {
+var getMovieList = function getMovies(event) {
     event.preventDefault();
     // get movieAPI
     // var movieAPI = 'https://imdb-api.com/en/API/SearchMovie/k_xuhun4lc/'
@@ -131,8 +130,8 @@ function getMovies(event) {
     });
 };
 
-movie.addEventListener("keyup", getMovies)
-movieForm.addEventListener('submit', getMovies)
+movie.addEventListener("keyup", getMovieList)
+movieForm.addEventListener('submit', getMovieList)
 
 // local storage
 
@@ -165,3 +164,4 @@ var loadWatchlist = function() {
         createWatchListEl(savedWatchList[i]);
     }
 }
+
