@@ -29,12 +29,12 @@ var getShowList = function getShows(event) {
             var showInfo = document.createElement('div')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
-            var watchList = document.createElement('button')
+            
 
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
-            watchList.innerHTML = "Add to Watch List"
+            
 
             showImg.classList.add('img')
             showInfo.classList.add('info')
@@ -42,14 +42,10 @@ var getShowList = function getShows(event) {
             
 
             showInfo.append(showTitle, showRating)
-            showEl.append(showImg, showInfo, watchList)
+            showEl.append(showImg, showInfo)
             main.appendChild(showEl)
             
-            watchList.onclick = function () {
-                var key = showEl;
-        
-                console.log(key);
-            }
+            
         
 
         }
@@ -105,12 +101,12 @@ var getMovieList = function getMovies(event) {
                 var movInfo = document.createElement('div')
                 var movTitle = document.createElement('h3')
                 var movRating = document.createElement('span')
-                var watchList = document.createElement('button')
+                
             
                 movImg.src = data.Search[i].Poster
                 movTitle.innerHTML = data.Search[i].Title
                 movRating.innerHTML = data.Search[i].imdbRating
-                watchList.innerHTML = "Add to Watch List"
+                
 
                 console.log(movImg.src)
 
@@ -120,7 +116,7 @@ var getMovieList = function getMovies(event) {
 
                 // append to html
                 movInfo.append(movTitle, movRating)
-                movEl.append(movImg, movInfo, watchList)
+                movEl.append(movImg, movInfo)
                 main.appendChild(movEl)
                 
             
@@ -134,7 +130,14 @@ movieForm.addEventListener('submit', getMovieList)
 
 // local storage
 
-var watchListHandler = function (event) {
-    event.preventDefault();
-    
-}
+//All movie and tvshow results will have an "Add to Watch List" button
+
+//On "Add to Watch List" click div element is added to watchListPage.html
+
+//Is logged in localStorage
+
+//When on watchListPage.html a new "Remove from Watch List" button is added
+
+//On "Remove from Watch List" click div element is removed from watchListPage.html
+
+//Is removed from localStorage on "Remove from Watch List" click
