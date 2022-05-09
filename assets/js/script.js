@@ -8,12 +8,14 @@ var main = document.getElementById('main')
 
 var watchlists = [];
 
+
 function getShows(event) {
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
     main.innerHTML = ""
 
+    
     console.log(tvUrl)
     fetch(tvUrl)
         .then(function (response){
@@ -46,8 +48,8 @@ function getShows(event) {
             main.appendChild(showEl)
             
             watchList.onclick = function () {
-                var key = showTitle;
-
+                var key = showEl;
+        
                 console.log(key);
             }
         
@@ -55,7 +57,7 @@ function getShows(event) {
         }
         
     })
-  
+    
 };
 
 show.addEventListener("keyup", getShows)
@@ -123,7 +125,7 @@ function getMovies(event) {
                 movEl.append(movImg, movInfo, watchList)
                 main.appendChild(movEl)
                 
-                
+            
     
         };
     });
@@ -134,7 +136,21 @@ movieForm.addEventListener('submit', getMovies)
 
 // local storage
 
-
+var createwatchListActions = function (watchListId) {
+    // create container to hold elements
+    var actionContainerEl = document.createElement("div");
+    actionContainerEl.className = "watchList-actions";
+  
+    // create delete button
+    var deleteButtonEl = document.createElement("button");
+    deleteButtonEl.textContent = "Delete";
+    deleteButtonEl.className = "btn delete-btn";
+    deleteButtonEl.setAttribute("watch-list-id", watchListId);
+    actionContainerEl.appendChild(deleteButtonEl);
+    
+  
+    return actionContainerEl;
+  };
 
 var saveWatchlist = function () {
     localStorage.setItem("watchlists", JSON.stringify(watchlists));
