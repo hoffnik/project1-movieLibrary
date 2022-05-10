@@ -9,7 +9,6 @@ var main = document.getElementById('main')
 var modal = document.getElementById("myModal");
 
 var pagePlaceHolder = function(event) {
-    event.preventDefault();
     main.innerHTML = ""
     var placeAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_xuhun4lc";
 
@@ -73,7 +72,7 @@ var loadTopMovies = function(movies) {
     }
 };
 
-// window.addEventListener('load', pagePlaceHolder);
+window.addEventListener('load', pagePlaceHolder);
 
 // Load home page with top movies on click of website name
 var home = document.getElementById('home')
@@ -148,7 +147,7 @@ var htmlMovieEl = document.getElementById('main');
 function getMovies(event) {
     event.preventDefault();
     var movieSearchInput = document.getElementById('movie').value;
-    
+
     // modal appears if search entered is blank
     if (movieSearchInput == "") {
         modal.style.display = "block";
@@ -230,11 +229,14 @@ movieForm.addEventListener('submit', getMovies)
 window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      pagePlaceHolder();
     }
+    
   }
 
 //make modal disappear when user clicks on modal
 modal.onclick = function() {
         modal.style.display = "none";
+        pagePlaceHolder();
     
 }
