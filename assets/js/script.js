@@ -73,16 +73,20 @@ var loadTopMovies = function(movies) {
     }
 };
 
-window.addEventListener('load', pagePlaceHolder);
+// window.addEventListener('load', pagePlaceHolder);
 
 // Load home page with top movies on click of website name
 var home = document.getElementById('home')
 home.addEventListener('click', pagePlaceHolder)
 
+//_____________tv API___________________________________________
 function getShows(event) {
-    if (tvForm == "") {
+    // modal appears if search entered is blank
+    if (show.value == "") {
         modal.style.display = "block";
+        
     }
+    
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
@@ -144,6 +148,13 @@ var htmlMovieEl = document.getElementById('main');
 function getMovies(event) {
     event.preventDefault();
     var movieSearchInput = document.getElementById('movie').value;
+    
+    // modal appears if search entered is blank
+    if (movieSearchInput == "") {
+        modal.style.display = "block";
+        
+    }
+
     var movieAPI = 'https://www.omdbapi.com/?apikey=b1a91290&type=movie&s='
     var movieURL = movieAPI + movieSearchInput
     main.innerHTML = ""
@@ -214,3 +225,16 @@ var displayMovies = function(movies) {
 
 movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
+
+//make modal disappear when user clicks on page
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+//make modal disappear when user clicks on modal
+modal.onclick = function() {
+        modal.style.display = "none";
+    
+}
