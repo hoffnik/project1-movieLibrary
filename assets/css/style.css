@@ -2,19 +2,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Copperplate, Copperplate Gothic Light, fantasy;
 }
 
 body {
     /* background-color: rgb(83, 80, 80); */
     background-color: #483434;
 }
+
+#home {
+    cursor: pointer;
+    color: #eee;
+}
+
 header {
     background-color:#6B4F4F
 }
 h1 {
     color:#eee;
     font-size: 20px;
-    padding-left: 15px;
+    padding-left: 20px;
 }
 
 label {
@@ -65,7 +72,7 @@ label {
     /* background-color: rgb(83, 80, 80); */
     background-color: #483434;
     border-radius: 3px;
-    padding: 0.25rem 0.5rem;
+    padding: 0.15rem 0.3rem;
 }
 
 <<<<<<< HEAD
@@ -78,7 +85,7 @@ label {
     position: relative;
     margin: 2px 0 0 0;
     padding: .5em .5em .5em .7em;
-    min-height: 0; /* support: IE7 */
+    min-height: 0; 
     font-size: 100%;
     border:1px solid #FDF8E4;
     border-radius:0.5rem;
@@ -100,5 +107,40 @@ label {
     background: #db785a;
     font-weight: 500;
     
+<<<<<<< HEAD
 >>>>>>> develop
 }
+=======
+}
+
+#detailsInfo {
+    background-color: #6B4F4F;
+    border-radius: 30px;
+}
+
+#movie-title {
+    font-size: 30px;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    cursor:pointer;
+  }
+>>>>>>> feature/additionalInfo

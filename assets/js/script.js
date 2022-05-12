@@ -5,9 +5,11 @@ var tvForm = document.getElementById('tvForm')
 var movie = document.getElementById('movie')
 var movieForm = document.getElementById('movieForm')
 var main = document.getElementById('main')
+// var for modal
+var modal = document.getElementById("myModal");
 
 var pagePlaceHolder = function(event) {
-    event.preventDefault();
+    main.innerHTML = ""
     var placeAPI = "https://imdb-api.com/en/API/MostPopularMovies/k_xuhun4lc";
 
     fetch(placeAPI)
@@ -49,20 +51,41 @@ var loadTopMovies = function(movies) {
         var movRating = document.createElement('span');
         movRating.textContent = movies.items[i].imDbRating;
 
+        // create info div for title and year styling
+        var movieInfo = document.createElement('div')
+        movieInfo.append(movTitle, movRating)
+        movieInfo.classList.add('info')
+
        // append to link
-        movieImageEl.append(movImg, movTitle, movRating);
+        movieImageEl.append(movImg, movieInfo);
        
         // append to container
         movieContainerEl.append(movieImageEl);
 
         // append container to DOM
         htmlMovieEl.appendChild(movieContainerEl);
+
+        // add NA in place of blank scores
+        if (movies.items[i].imDbRating == "") {
+            movRating.innerHTML = 'NA'
+        }
     }
 };
 
 window.addEventListener('load', pagePlaceHolder);
 
+// Load home page with top movies on click of website name
+var home = document.getElementById('home')
+home.addEventListener('click', pagePlaceHolder)
+
+//_____________tv API___________________________________________
 function getShows(event) {
+    // modal appears if search entered is blank
+    if (show.value == "") {
+        modal.style.display = "block";
+        
+    }
+    
     event.preventDefault();
     var tvAPI = "https://api.tvmaze.com/search/shows?q=";
     var tvUrl = tvAPI + show.value
@@ -84,21 +107,20 @@ function getShows(event) {
             console.log(data)
             
         for (i=0; i < data.length; i++) {
-            var showEl = document.createElement('div')
+            var showEl = document.createElement('a')
             var showImg = document.createElement('img')
             var showInfo = document.createElement('div')
             var tvExpand = document.createElement('div')
-            var expandTitle = document.createElement('h3')
-            var expandInfo = document.createElement('span')
             var showTitle = document.createElement('h3')
             var showRating = document.createElement('span')
+
+            var tvId = data[i].show.externals.thetvdb
+            showEl.setAttribute("href", "./tvdetails.html?tvid=" + tvId);
         
             showImg.src = data[i].show.image.medium
             showTitle.innerHTML = data[i].show.name
             showRating.innerHTML = data[i].show.rating.average
-            expandTitle.innerHTML = 'More Info'
-            expandInfo.innerHTML = 'This is where further information will be added once second api works properly'
-
+            
             if (data[i].show.rating.average == null) {
                 showRating.innerHTML = 'NA'
             }
@@ -106,20 +128,10 @@ function getShows(event) {
             showImg.classList.add('img')
             showInfo.classList.add('info')
             showEl.classList.add('movie-show')
-            expandInfo.classList.add('expand')
-            tvExpand.setAttribute('id', 'accordion')
 
             showInfo.append(showTitle, showRating)
-            tvExpand.append(expandTitle, expandInfo)
-            showEl.append(showImg, showInfo, tvExpand)
+            showEl.append(showImg, showInfo)
             main.appendChild(showEl)
-
-            $(function() {
-                $( "#accordion" ).accordion({
-                collapsible: true,
-                active: false
-                });
-            });
         }
     })
     
@@ -139,6 +151,13 @@ var requestOptions = {
 function getMovies(event) {
     event.preventDefault();
     var movieSearchInput = document.getElementById('movie').value;
+
+    // modal appears if search entered is blank
+    if (movieSearchInput == "") {
+        modal.style.display = "block";
+        
+    }
+
     var movieAPI = 'https://www.omdbapi.com/?apikey=b1a91290&type=movie&s='
     var movieURL = movieAPI + movieSearchInput
     main.innerHTML = ""
@@ -180,22 +199,51 @@ var displayMovies = function(movies) {
 
         // create title element
         var movTitle = document.createElement('h3');
-        movTitle.textContent = movies.Search[i].Title;
+        movTitle.innerHTML = movies.Search[i].Title;
         
         // create year element
-        var movYear = document.createElement('span');
-        movYear.textContent = movies.Search[i].Year;
+        var movYear = document.createElement('h3');
+        movYear.innerHTML = movies.Search[i].Year;
+
+        // append title and year to movInfo for styling
+        var movInfo = document.createElement('div')
+        movInfo.append(movTitle, movYear)
+        movInfo.classList.add('info');
 
        // append to link
-        movieImageEl.append(movImg, movTitle, movYear);
+        movieImageEl.append(movImg, movInfo);
        
         // append to container
         movieContainerEl.append(movieImageEl);
 
         // append container to DOM
         htmlMovieEl.appendChild(movieContainerEl);
+
+        // hide movie results that do not have posters
+        if (movies.Search[i].Poster == "N/A") {
+            movieContainerEl.style.display = "none"
+        }
     }    
 };
 
 movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
+<<<<<<< HEAD
+=======
+
+//make modal disappear when user clicks on page
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      pagePlaceHolder();
+    }
+    
+  }
+
+//make modal disappear when user clicks on modal
+modal.onclick = function() {
+        modal.style.display = "none";
+        pagePlaceHolder();
+    
+}
+>>>>>>> feature/additionalInfo
