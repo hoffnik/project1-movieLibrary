@@ -228,8 +228,6 @@ var displayMovies = function(movies) {
 
 movie.addEventListener("keyup", getMovies)
 movieForm.addEventListener('submit', getMovies)
-<<<<<<< HEAD
-=======
 
 //make modal disappear when user clicks on page
 window.onclick = function(event) {
@@ -246,4 +244,3 @@ modal.onclick = function() {
         pagePlaceHolder();
     
 }
->>>>>>> feature/additionalInfo
